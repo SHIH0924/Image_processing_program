@@ -72,6 +72,15 @@ def Bilateral_Filter():#雙邊濾波器函數
 def Harris_Corner_Detector():#哈里斯邊角偵測
     Intkinter(Detector.Harris_Corner_Detector())
 
+def Canny_Edge_Detector():#邊緣偵測
+    Intkinter(Detector.Canny_Edge_Detector())
+
+def Feature_Detector():#特徵偵測
+    Intkinter(Detector.Feature_Detector())
+
+def SIFT_Feature_Description():#特徵描述
+    Intkinter(Detector.SIFT_Feature_Description())
+
 win=tk.Tk()                             # 宣告一視窗
 win.title("影像處理程式開發平台")        # 視窗名稱
 win.geometry("750x500")                 # 視窗大小(寬x高)
@@ -124,6 +133,9 @@ menubar.add_cascade(label="Image Processing", menu=list2)
 
 list3=tk.Menu(menubar)                           
 list3.add_command(label="Harris Corner Detector", command=Harris_Corner_Detector)
+list3.add_command(label="Canny Edge Detector", command=Canny_Edge_Detector)
+list3.add_command(label="Feature Detector", command=Feature_Detector)
+list3.add_command(label="SIFT Feature Description", command=SIFT_Feature_Description)
 menubar.add_cascade(label="Detector", menu=list3)
 
 menubar.add_command(label="Quit", command=win.destroy)
