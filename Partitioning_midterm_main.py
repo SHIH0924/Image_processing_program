@@ -98,6 +98,12 @@ def Dilating():#擴張
 def eroding():#侵蝕
     Intkinter(Morphological_Transformations.Basic_morphology(cv.erode))
 
+def Skeletonize():#骨架化
+    Intkinter(Morphological_Transformations.Skeletonize())
+
+def perim():#邊緣
+    Intkinter(Morphological_Transformations.perim())
+
 win=tk.Tk()                             # 宣告一視窗
 win.title("影像處理程式開發平台")        # 視窗名稱
 win.geometry("750x500")                 # 視窗大小(寬x高)
@@ -160,6 +166,8 @@ list3.add_command(label="Bounding boxes", command=Bounding_boxes)
 list3.add_separator()
 list3.add_command(label="Dilating", command=Dilating)
 list3.add_command(label="eroding", command=eroding)
+list3.add_command(label="Skeletonize", command=Skeletonize)
+list3.add_command(label="perim", command=perim)
 menubar.add_cascade(label="Detector", menu=list3)
 
 menubar.add_command(label="Quit", command=win.destroy)
