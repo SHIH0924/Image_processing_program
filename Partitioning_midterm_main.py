@@ -8,6 +8,7 @@ import setting
 import Image_Processing
 import Geometric_transformation
 import Neighborhood_processing
+import Detector
 #main
 def Intkinter(intkimg):
     cv2image = cv.cvtColor(intkimg, cv.COLOR_BGR2RGBA)
@@ -68,6 +69,8 @@ def Median_Filter():#中值濾波器函式
 def Bilateral_Filter():#雙邊濾波器函數
     Intkinter(Neighborhood_processing.Bilateral_Filter())
 
+def Harris_Corner_Detector():#哈里斯邊角偵測
+    Intkinter(Detector.Harris_Corner_Detector())
 
 win=tk.Tk()                             # 宣告一視窗
 win.title("影像處理程式開發平台")        # 視窗名稱
@@ -118,6 +121,10 @@ list2_2.add_command(label="中值濾波器", command=Median_Filter)
 list2_2.add_command(label="雙邊濾波器", command=Bilateral_Filter)
 list2.add_cascade(label="鄰域處理功能", menu=list2_2)
 menubar.add_cascade(label="Image Processing", menu=list2)
+
+list3=tk.Menu(menubar)                           
+list3.add_command(label="Harris Corner Detector", command=Harris_Corner_Detector)
+menubar.add_cascade(label="Detector", menu=list3)
 
 menubar.add_command(label="Quit", command=win.destroy)
 win.config(menu=menubar)# 設定視窗的選單列
