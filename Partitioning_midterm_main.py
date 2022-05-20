@@ -9,6 +9,7 @@ import Image_Processing
 import Geometric_transformation
 import Neighborhood_processing
 import Detector
+import Contours
 #main
 def Intkinter(intkimg):
     cv2image = cv.cvtColor(intkimg, cv.COLOR_BGR2RGBA)
@@ -81,6 +82,12 @@ def Feature_Detector():#特徵偵測
 def SIFT_Feature_Description():#特徵描述
     Intkinter(Detector.SIFT_Feature_Description())
 
+def Simple_Contour():#簡單輪廓
+    Intkinter(Contours.Simple_Contour())
+
+def Convex_Hull():#凸包
+    Intkinter(Contours.Convex_Hull())
+
 win=tk.Tk()                             # 宣告一視窗
 win.title("影像處理程式開發平台")        # 視窗名稱
 win.geometry("750x500")                 # 視窗大小(寬x高)
@@ -136,6 +143,9 @@ list3.add_command(label="Harris Corner Detector", command=Harris_Corner_Detector
 list3.add_command(label="Canny Edge Detector", command=Canny_Edge_Detector)
 list3.add_command(label="Feature Detector", command=Feature_Detector)
 list3.add_command(label="SIFT Feature Description", command=SIFT_Feature_Description)
+list3.add_separator()
+list3.add_command(label="Simple Contour", command=Simple_Contour)
+list3.add_command(label="Convex Hull", command=Convex_Hull)
 menubar.add_cascade(label="Detector", menu=list3)
 
 menubar.add_command(label="Quit", command=win.destroy)
