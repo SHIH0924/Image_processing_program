@@ -10,7 +10,7 @@ import Geometric_transformation
 import Neighborhood_processing
 import Detector
 import Contours
-import Morphological_Transformations
+
 #main
 def Intkinter(intkimg):
     cv2image = cv.cvtColor(intkimg, cv.COLOR_BGR2RGBA)
@@ -92,24 +92,6 @@ def Convex_Hull():#凸包
 def Bounding_boxes():#邊界框
     Intkinter(Contours.Bounding_boxes())
 
-def Dilating():#擴張
-    Intkinter(Morphological_Transformations.Basic_morphology(cv.dilate))
-
-def eroding():#侵蝕
-    Intkinter(Morphological_Transformations.Basic_morphology(cv.erode))
-
-def Skeletonize():#骨架化
-    Intkinter(Morphological_Transformations.Skeletonize())
-
-def perim():#邊緣
-    Intkinter(Morphological_Transformations.perim())
-
-def tophat():#執行形態學頂帽變換
-    Intkinter(Morphological_Transformations.tophat())
-
-def blackhat():#執行形態學黑帽變換
-    Intkinter(Morphological_Transformations.blackhat())
-
 win=tk.Tk()                             # 宣告一視窗
 win.title("影像處理程式開發平台")        # 視窗名稱
 win.geometry("750x500")                 # 視窗大小(寬x高)
@@ -169,13 +151,6 @@ list3.add_separator()
 list3.add_command(label="Simple Contour", command=Simple_Contour)
 list3.add_command(label="Convex Hull", command=Convex_Hull)
 list3.add_command(label="Bounding boxes", command=Bounding_boxes)
-list3.add_separator()
-list3.add_command(label="Dilating", command=Dilating)
-list3.add_command(label="eroding", command=eroding)
-list3.add_command(label="Skeletonize", command=Skeletonize)
-list3.add_command(label="perim", command=perim)
-list3.add_command(label="tophat", command=tophat)
-list3.add_command(label="blackhat", command=blackhat)
 menubar.add_cascade(label="Detector", menu=list3)
 
 menubar.add_command(label="Quit", command=win.destroy)
