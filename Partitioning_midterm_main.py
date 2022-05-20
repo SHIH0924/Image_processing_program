@@ -88,6 +88,9 @@ def Simple_Contour():#簡單輪廓
 def Convex_Hull():#凸包
     Intkinter(Contours.Convex_Hull())
 
+def Bounding_boxes():#邊界框
+    Intkinter(Contours.Bounding_boxes())
+
 win=tk.Tk()                             # 宣告一視窗
 win.title("影像處理程式開發平台")        # 視窗名稱
 win.geometry("750x500")                 # 視窗大小(寬x高)
@@ -146,6 +149,7 @@ list3.add_command(label="SIFT Feature Description", command=SIFT_Feature_Descrip
 list3.add_separator()
 list3.add_command(label="Simple Contour", command=Simple_Contour)
 list3.add_command(label="Convex Hull", command=Convex_Hull)
+list3.add_command(label="Bounding boxes", command=Bounding_boxes)
 menubar.add_cascade(label="Detector", menu=list3)
 
 menubar.add_command(label="Quit", command=win.destroy)

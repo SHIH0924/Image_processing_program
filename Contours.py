@@ -74,3 +74,48 @@ def Convex_Hull():#凸包
                 return im.im
     except Exception:
         msgbox.showerror("Error", "Median Filter error!!!")
+
+def Bounding_boxes():#邊界框
+    try:
+        img = im.im.copy()
+        ret, threshed_img = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY),
+                        127, 255, cv.THRESH_BINARY)
+        # 找到輪廓並獲取外部輪廓
+        contours, hier = cv.findContours(threshed_img, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
+        # 對於每個輪廓，用綠色繪製 boundingRect
+        # 一個紅色的 minAreaRect 和
+        # 一個藍色的 minEnclosureCircle
+        for c in contours:
+            # 獲取邊界矩形
+            x, y, w, h = cv.boundingRect(c)
+            # 繪製一個綠色矩形來可視化邊界矩形
+            cv.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
+
+            # 得到最小面積矩形
+            rect = cv.minAreaRect(c)
+            box = cv.boxPoints(rect)
+            # 將所有坐標浮點值轉換為 int
+            box = np.int0(box)
+            # 畫一個紅色的“nghien”矩形
+            cv.drawContours(img, [box], 0, (0, 0, 255))
+
+            # 最後，得到最小的封閉圓
+            (x, y), radius = cv.minEnclosingCircle(c)
+            # convert all values to int
+            center = (int(x), int(y))
+            radius = int(radius)
+            # 並用藍色繪製圓圈
+            img = cv.circle(img, center, radius, (255, 0, 0), 2)
+
+        cv.drawContours(img, contours, -1, (255, 255, 0), 1)
+        cv.imshow("Bounding boxes", img)
+        while(1):
+            k = cv.waitKey(1) & 0xFF
+            if k == 13:
+                cv.destroyWindow('Bounding boxes')
+                return img
+            elif k==32:
+                cv.destroyWindow('Bounding boxes')
+                return im.im
+    except Exception:
+        msgbox.showerror("Error", "Median Filter error!!!")
