@@ -104,6 +104,12 @@ def Skeletonize():#骨架化
 def perim():#邊緣
     Intkinter(Morphological_Transformations.perim())
 
+def tophat():#執行形態學頂帽變換
+    Intkinter(Morphological_Transformations.tophat())
+
+def blackhat():#執行形態學黑帽變換
+    Intkinter(Morphological_Transformations.blackhat())
+
 win=tk.Tk()                             # 宣告一視窗
 win.title("影像處理程式開發平台")        # 視窗名稱
 win.geometry("750x500")                 # 視窗大小(寬x高)
@@ -168,6 +174,8 @@ list3.add_command(label="Dilating", command=Dilating)
 list3.add_command(label="eroding", command=eroding)
 list3.add_command(label="Skeletonize", command=Skeletonize)
 list3.add_command(label="perim", command=perim)
+list3.add_command(label="tophat", command=tophat)
+list3.add_command(label="blackhat", command=blackhat)
 menubar.add_cascade(label="Detector", menu=list3)
 
 menubar.add_command(label="Quit", command=win.destroy)

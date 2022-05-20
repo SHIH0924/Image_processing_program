@@ -74,3 +74,54 @@ def perim():#邊緣
     except Exception:
         msgbox.showerror("Error", "Median Filter error!!!")
 
+def tophat():#執行形態學頂帽變換
+    try:
+        input_image = im.im
+        input_image = cv.cvtColor(input_image, cv.COLOR_BGR2GRAY) 
+        cv.namedWindow('image')# 新建視窗
+        cv.createTrackbar('x','image',10,200,nothing)
+        cv.createTrackbar('y','image',10,200,nothing)
+        while(1):
+            x = cv.getTrackbarPos('x','image')
+            y = cv.getTrackbarPos('y','image')
+            # 獲取要在 Top-Hat 中使用的內核
+            filterSize =(x, y)
+            kernel = cv.getStructuringElement(cv.MORPH_RECT, filterSize)
+            # 應用Top-Hat操作
+            tophat_img = cv.morphologyEx(input_image, cv.MORPH_TOPHAT,kernel)
+            cv.imshow("image", tophat_img)
+            k = cv.waitKey(1) & 0xFF
+            if k == 13:
+                cv.destroyWindow('image')
+                return tophat_img
+            elif k==32:
+                cv.destroyWindow('image')
+                return im.im
+    except Exception:
+        msgbox.showerror("Error", "Median Filter error!!!")
+
+def blackhat():#執行形態學黑帽變換
+    try:
+        input_image = im.im
+        img = cv.cvtColor(input_image, cv.COLOR_BGR2GRAY) 
+        cv.namedWindow('image')# 新建視窗
+        cv.createTrackbar('x','image',10,200,nothing)
+        cv.createTrackbar('y','image',10,200,nothing)
+        while(1):
+            x = cv.getTrackbarPos('x','image')
+            y = cv.getTrackbarPos('y','image')
+            # 獲取要在 Top-Hat 中使用的內核
+            filterSize =(x, y)
+            kernel = cv.getStructuringElement(cv.MORPH_RECT, filterSize)
+            # 應用Top-Hat操作
+            blackhat = cv.morphologyEx(img, cv.MORPH_BLACKHAT, kernel)
+            cv.imshow("image", blackhat)
+            k = cv.waitKey(1) & 0xFF
+            if k == 13:
+                cv.destroyWindow('image')
+                return blackhat
+            elif k==32:
+                cv.destroyWindow('image')
+                return im.im
+    except Exception:
+        msgbox.showerror("Error", "Median Filter error!!!")
